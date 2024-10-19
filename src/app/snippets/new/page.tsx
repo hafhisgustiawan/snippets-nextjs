@@ -1,4 +1,5 @@
 import { db } from "@/db";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 const page = () => {
@@ -15,14 +16,16 @@ const page = () => {
       },
     });
 
-    // console.log(create);
+    console.log(create);
     //redirect ini khusus untuk server component
     redirect("/");
   };
 
   return (
     <form action={createSnippet}>
-      <h3 className="font-bold m-3">Create a Snippet</h3>
+      <h3 className="font-bold m-3">
+        <Link href={"/"}>Create a Snippet</Link>
+      </h3>
       <div className="flex flex-col gap-4">
         <div className="flex gap-4">
           <label htmlFor="title" className="w-12">

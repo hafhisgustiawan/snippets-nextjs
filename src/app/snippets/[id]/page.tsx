@@ -18,7 +18,22 @@ const page: React.FC<IProps> = async ({ params }) => {
 
   if (!snippet) return notFound();
 
-  return <div>{snippet.title}</div>;
+  return (
+    <div className="flex min-h-screen flex-col gap-3">
+      <div className="flex justify-between items-center">
+        <h3>Detail Snippet</h3>
+        <div className="flex space-x-3">
+          <button className="btn">Edit</button>
+          <button className="btn">Delete</button>
+        </div>
+      </div>
+      <div className="mockup-code">
+        <pre data-prefix="$">
+          <code>{snippet.code}</code>
+        </pre>
+      </div>
+    </div>
+  );
 };
 
 export default page;
