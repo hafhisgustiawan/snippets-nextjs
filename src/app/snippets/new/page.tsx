@@ -2,7 +2,7 @@ import { db } from "@/db";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-const page = () => {
+const CreateSnippet = () => {
   const createSnippet = async (data: FormData) => {
     "use server";
 
@@ -56,4 +56,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default CreateSnippet;
