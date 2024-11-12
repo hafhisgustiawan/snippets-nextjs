@@ -1,6 +1,13 @@
 import { db } from "@/db";
 import Link from "next/link";
 
+// ketika run 'npm run build' akan ditampilkan list routing yang tersedia (bulat : static route dan y : dynamic route)
+// static ini hanya akan di render ketika di build aja, jadi gak akan berubah nanti ketika di refresh akan kembali lagi
+// y ini berarti dinamic, bisa berubah
+// vid 51
+
+// export const dynamic = "force-dynamic"; //disable cache
+
 export default async function Home() {
   const snippets = await db.snippet.findMany();
 

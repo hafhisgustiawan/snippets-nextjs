@@ -1,28 +1,18 @@
-import { db } from "@/db";
+"use client";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { useFormState } from "react-dom";
+import { createSnippet } from "@/actions";
+
+const initialState = {
+  isValid: false,
+  errors: [],
+};
 
 const CreateSnippet = () => {
-  const createSnippet = async (data: FormData) => {
-    "use server";
-
-    const title = data.get("title") as string;
-    const code = data.get("code") as string;
-
-    const create = await db.snippet.create({
-      data: {
-        title,
-        code,
-      },
-    });
-
-    console.log(create);
-    //redirect ini khusus untuk server component
-    redirect("/");
-  };
+  const [formState, formAction] = useFormState(createSnippet, initialState);
 
   return (
-    <form action={createSnippet}>
+    <form action={formAction}>
       <h3 className="font-bold m-3">
         <Link href={"/"}>Create a Snippet</Link>
       </h3>
@@ -48,6 +38,11 @@ const CreateSnippet = () => {
             className="border rounded p-2 w-full"
           />
         </div>
+        {formState?.errors.length > 0 && (
+          <div className="bg-error rounded-btn p-3">
+            {formState.errors.join(" & ")}
+          </div>
+        )}
         <button type="submit" className="rounded p-2 bg-blue-200">
           Create
         </button>
